@@ -33,21 +33,19 @@ namespace ComparisonBubbleHoara
             return end_pivot_index;
         }
 
-        static int[] QuickSort(ref int[] nums, int l, int r)
+        static void QuickSort(ref int[] nums, int l, int r)
         {
             // Остановка рекурсии, когда больше нечего сортировать
             if (l >= r)
-                return nums;
+                return;
 
             // Ставим pivot на место
             int pivot_index = FindPivotIndex(ref nums, l, r);
-            nums = QuickSort(ref nums, l, pivot_index - 1); // Сортируем левую часть подмассива
-            nums = QuickSort(ref nums, pivot_index + 1, r); // Сортируем правую часть подмассива
-
-            return nums;
+            QuickSort(ref nums, l, pivot_index - 1); // Сортируем левую часть подмассива
+            QuickSort(ref nums, pivot_index + 1, r); // Сортируем правую часть подмассива
         }
         //----------------- Пузырьковая ------------------------------//
-        static int[] BubbleSort(int[] nums)
+        static void BubbleSort(ref int[] nums)
         {
             // Объявление временной переменной
             int temp;
@@ -65,7 +63,6 @@ namespace ComparisonBubbleHoara
                     }
                 }
             }
-            return nums;
         }
 
         static void Main(string[] args)
@@ -127,7 +124,7 @@ namespace ComparisonBubbleHoara
 
             time_meter.Start();
             // Выполнение сортировки
-            nums = QuickSort(ref nums, 0, nums.Length - 1);
+            QuickSort(ref nums, 0, nums.Length - 1);
             time_meter.Stop();
 
             return time_meter.ElapsedMilliseconds;
@@ -139,7 +136,7 @@ namespace ComparisonBubbleHoara
 
             time_meter.Start();
             // Выполнение сортировки
-            nums = BubbleSort(nums);
+            BubbleSort(ref nums);
             time_meter.Stop();
 
             return time_meter.ElapsedMilliseconds;
