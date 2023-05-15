@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace ComparisonSorting
+namespace ComparisonBubbleHoara
 {
     class Program
     {
         //----------------- Быстрая сортировка ------------------------------//
-        static int FindPivotIndex(int[] nums, int l, int r)
+        static int FindPivotIndex(ref int[] nums, int l, int r)
         {
             int temp;
             int end_pivot_index = l - 1;
@@ -33,16 +33,16 @@ namespace ComparisonSorting
             return end_pivot_index;
         }
 
-        static int[] QuickSort(int[] nums, int l, int r)
+        static int[] QuickSort(ref int[] nums, int l, int r)
         {
             // Остановка рекурсии, когда больше нечего сортировать
             if (l >= r)
                 return nums;
 
             // Ставим pivot на место
-            int pivot_index = FindPivotIndex(nums, l, r);
-            nums = QuickSort(nums, l, pivot_index - 1); // Сортируем левую часть подмассива
-            nums = QuickSort(nums, pivot_index + 1, r); // Сортируем правую часть подмассива
+            int pivot_index = FindPivotIndex(ref nums, l, r);
+            nums = QuickSort(ref nums, l, pivot_index - 1); // Сортируем левую часть подмассива
+            nums = QuickSort(ref nums, pivot_index + 1, r); // Сортируем правую часть подмассива
 
             return nums;
         }
@@ -127,7 +127,7 @@ namespace ComparisonSorting
 
             time_meter.Start();
             // Выполнение сортировки
-            nums = QuickSort(nums, 0, nums.Length - 1);
+            nums = QuickSort(ref nums, 0, nums.Length - 1);
             time_meter.Stop();
 
             return time_meter.ElapsedMilliseconds;
