@@ -6,7 +6,15 @@ namespace ComparisonBubbleHoara
     class Program
     {
         //----------------- Быстрая сортировка ------------------------------//
-        static int FindPivotIndex(ref int[] nums, int l, int r)
+
+        /// <summary>
+        /// Нахождение места опорного (последнего) элемента
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="l"></param>
+        /// <param name="r"></param>
+        /// <returns></returns>
+        static int SetPivot(ref int[] nums, int l, int r)
         {
             int temp;
             int end_pivot_index = l - 1;
@@ -33,6 +41,12 @@ namespace ComparisonBubbleHoara
             return end_pivot_index;
         }
 
+        /// <summary>
+        /// Быстрая сортировка
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="l"></param>
+        /// <param name="r"></param>
         static void QuickSort(ref int[] nums, int l, int r)
         {
             // Остановка рекурсии, когда больше нечего сортировать
@@ -40,11 +54,17 @@ namespace ComparisonBubbleHoara
                 return;
 
             // Ставим pivot на место
-            int pivot_index = FindPivotIndex(ref nums, l, r);
+            int pivot_index = SetPivot(ref nums, l, r);
             QuickSort(ref nums, l, pivot_index - 1); // Сортируем левую часть подмассива
             QuickSort(ref nums, pivot_index + 1, r); // Сортируем правую часть подмассива
         }
+
         //----------------- Пузырьковая ------------------------------//
+
+        /// <summary>
+        /// Пузырьковая сортировка
+        /// </summary>
+        /// <param name="nums"></param>
         static void BubbleSort(ref int[] nums)
         {
             // Объявление временной переменной
@@ -91,7 +111,11 @@ namespace ComparisonBubbleHoara
             Console.ReadKey();
         }
 
-        // Первоначальное заполнение элементов массива
+        /// <summary>
+        /// Первоначальное заполнение элементов массива
+        /// </summary>
+        /// <param name="first_array"></param>
+        /// <param name="second_array"></param>
         static void StartedFullArrays(out int[] first_array, out int[] second_array)
         {
             // Иинициалищация размера массива
@@ -118,7 +142,12 @@ namespace ComparisonBubbleHoara
             }
         }
 
-        // Метод, сортирующий массив и засекающий время, потраченное на сортировку Хоара
+        /// <summary>
+        /// Метод, сортирующий массив и засекающий время, потраченное на сортировку Хоара
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="time_meter"></param>
+        /// <returns></returns>
         static long MarkTheTimeHoara(ref int[] nums, Stopwatch time_meter)
         {
 
@@ -130,7 +159,12 @@ namespace ComparisonBubbleHoara
             return time_meter.ElapsedMilliseconds;
         }
 
-        // Метод, сортирующий массив и засекающий время, потраченное на сортировку пузырьком
+        /// <summary>
+        /// Метод, сортирующий массив и засекающий время, потраченное на сортировку пузырьком
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="time_meter"></param>
+        /// <returns></returns>
         static long MarkTheTimeBubble(ref int[] nums, Stopwatch time_meter)
         {
 
