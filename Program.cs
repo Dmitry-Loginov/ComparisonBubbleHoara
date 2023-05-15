@@ -100,9 +100,9 @@ namespace ComparisonSorting
             // Иинициалищация размера массива
             Console.Write("Введите размер массива N = ");
             string test_len = Console.ReadLine();
-            while (!int.TryParse(test_len, out var number))
+            while (!int.TryParse(test_len, out var _number))
             {
-                Console.WriteLine("Введено не число. Пожалуйста, введите коррентное число");
+                Console.WriteLine("Введено некорректное значение. Пожалуйста, введите коррентное целое число");
                 test_len = Console.ReadLine();
             }
             int len = int.Parse(test_len);
