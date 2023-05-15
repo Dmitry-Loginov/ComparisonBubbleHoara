@@ -99,7 +99,13 @@ namespace ComparisonSorting
         {
             // Иинициалищация размера массива
             Console.Write("Введите размер массива N = ");
-            int len = Convert.ToInt32(Console.ReadLine());
+            string test_len = Console.ReadLine();
+            while (!int.TryParse(test_len, out var number))
+            {
+                Console.WriteLine("Введено не число. Пожалуйста, введите коррентное число");
+                test_len = Console.ReadLine();
+            }
+            int len = int.Parse(test_len);
 
             // Создание массивов введенных размеров
             first_array = new int[len];
